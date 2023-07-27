@@ -6,3 +6,6 @@ class SimpleJSONSerializer:
         if isinstance(data_dict, list):
             return [PersonalData(**entry) for entry in data_dict]
         return PersonalData(**data_dict)
+
+    def get_supported_format(self):
+        return "json"

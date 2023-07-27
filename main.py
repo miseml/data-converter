@@ -15,6 +15,8 @@ DISPLAY_FORMATS = {
     "html": html.html_formatter,
 }
 
+SERIALIZER_TYPES = ["json", "simplejson", "yaml"]
+
 def configure(binder):
     binder.bind("json", JSONSerializer())
     binder.bind("simplejson", SimpleJSONSerializer())
@@ -22,10 +24,14 @@ def configure(binder):
 
 inject.configure(configure)
 
+def print_supported_filetypes():
+    print("Supported filetypes: ")
+    print(set([inject.instance(type).get_supported_format() for type in SERIALIZER_TYPES]))
+
 def main():
     parser = argparse.ArgumentParser(description="Serialize data from a file using different serializers and output formats.")
     parser.add_argument("filepath", type=str, help="Path to the file.")
-    parser.add_argument("serializer", choices=["json", "simplejson", "yaml"], help="Choose the serializer (json, simplejson, or yaml).")
+    parser.add_argument("serializer", choices=SERIALIZER_TYPES, help="Choose the serializer (json, simplejson, or yaml).")
     parser.add_argument("outputFormat", choices=["text", "html"], help="Choose the output format (text or html).")
 
     args = parser.parse_args()
@@ -33,6 +39,8 @@ def main():
     filepath = args.filepath
     serializer = args.serializer
     output_format = args.outputFormat
+
+    print_supported_filetypes()
 
     with open(filepath, "r") as file:
         file_content = file.read()
