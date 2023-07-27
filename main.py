@@ -34,13 +34,9 @@ def main():
     serializer = args.serializer
     output_format = args.outputFormat
 
-    print("Filepath:", filepath)
-    print("Serializer:", serializer)
-    print("Output Format:", output_format)
-
     with open(filepath, "r") as file:
         file_content = file.read()
-        result = inject.instance(serializer).deserialize(file_content)
+        result = inject.instance(serializer).serialize(file_content)
         display = DISPLAY_FORMATS[output_format]
         display(result)
 
