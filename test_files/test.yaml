@@ -1,0 +1,9 @@
+- address: "111 That St."
+  name: Jason
+  phone_number: 123-1234
+- address: "303 This St."
+  name: John
+  phone_number: 604-3334
+- address: "1100 Burrard St."
+  name: Adam
+  phone_number: 236-0044

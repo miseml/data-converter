@@ -1,1 +1,9 @@
+exceptiongroup==1.1.2
+iniconfig==2.0.0
+inject==5.0.0
+packaging==23.1
+pluggy==1.2.0
 pytest==7.4.0
+PyYAML==6.0.1
+simplejson==3.19.1
+tomli==2.0.1
