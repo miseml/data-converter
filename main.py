@@ -30,17 +30,21 @@ def print_supported_filetypes():
 
 def main():
     parser = argparse.ArgumentParser(description="Serialize data from a file using different serializers and output formats.")
-    parser.add_argument("filepath", type=str, help="Path to the file.")
-    parser.add_argument("serializer", choices=SERIALIZER_TYPES, help="Choose the serializer (json, simplejson, or yaml).")
-    parser.add_argument("outputFormat", choices=["text", "html"], help="Choose the output format (text or html).")
+    parser.add_argument("-f", "--filepath", type=str, help="Path to the file.")
+    parser.add_argument("-s", "--serializer", choices=SERIALIZER_TYPES, help="Choose the serializer (json, simplejson, or yaml).")
+    parser.add_argument("-o", "--outputFormat", choices=["text", "html"], help="Choose the output format (text or html).")
+    parser.add_argument("-x", "--supportedFormats", action='store_true', help="Print supported input file types.")
 
     args = parser.parse_args()
+
+    if args.supportedFormats:
+        print_supported_filetypes()
+        return
 
     filepath = args.filepath
     serializer = args.serializer
     output_format = args.outputFormat
 
-    print_supported_filetypes()
 
     with open(filepath, "r") as file:
         file_content = file.read()
