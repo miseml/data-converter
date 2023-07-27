@@ -20,4 +20,4 @@ Convert yaml file into text
 
 Convert json file into html
 
-`python main.py test_files/test.yaml json html`
+`python main.py test_files/test.json json html`
